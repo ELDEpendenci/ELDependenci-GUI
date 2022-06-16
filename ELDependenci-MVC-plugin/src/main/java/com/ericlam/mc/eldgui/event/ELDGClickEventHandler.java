@@ -23,7 +23,7 @@ public final class ELDGClickEventHandler extends ELDGEventHandler<ClickMapping, 
 
     @Override
     protected Map<ClickMapping, Method> loadAllHandlers(Method[] controllerMethods) {
-        return  Arrays.stream(controllerMethods).parallel()
+        return Arrays.stream(controllerMethods).parallel()
                 .filter(m -> m.isAnnotationPresent(ClickMapping.class))
                 .collect(Collectors.toMap(m -> m.getAnnotation(ClickMapping.class), m -> m));
     }
@@ -47,7 +47,7 @@ public final class ELDGClickEventHandler extends ELDGEventHandler<ClickMapping, 
 
     @Override
     protected RequestMapping toRequestMapping(ClickMapping annotation) {
-        return new RequestMapping(){
+        return new RequestMapping() {
 
             @Override
             public Class<? extends View<?>> view() {

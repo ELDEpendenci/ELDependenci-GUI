@@ -114,22 +114,22 @@ public final class RGBSelector extends AbstractComponent implements Listenable<A
 
     @Override
     public void callBack(AsyncChatEvent event) {
-        String input = ((TextComponent)event.message()).content();
+        String input = ((TextComponent) event.message()).content();
         Color color;
         try {
-            if (input.startsWith("#") && input.length() == 7){
+            if (input.startsWith("#") && input.length() == 7) {
                 int rgb = Integer.parseInt(input.substring(1), 16);
                 color = Color.fromRGB(rgb);
-            }else if (input.split(" ").length == 3){
+            } else if (input.split(" ").length == 3) {
                 String[] args = input.split(" ");
                 int red = Integer.parseInt(args[0]);
                 int green = Integer.parseInt(args[1]);
                 int blue = Integer.parseInt(args[2]);
                 color = Color.fromRGB(red, green, blue);
-            }else{
+            } else {
                 throw new IllegalArgumentException();
             }
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             event.getPlayer().sendMessage(invalidMessage);
             return;
         }

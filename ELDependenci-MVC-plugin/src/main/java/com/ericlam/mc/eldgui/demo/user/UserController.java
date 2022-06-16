@@ -36,7 +36,7 @@ public class UserController {
         } else {
             // try using throw exception -> try using pass controller
             //return new BukkitView<>(UserNotFoundView.class, username);
-            UserNotFoundException e =  new UserNotFoundException(username);
+            UserNotFoundException e = new UserNotFoundException(username);
             session.setAttribute("exception", e);
             session.setAttribute("from", "user");
             return new BukkitRedirectView("error");
@@ -83,7 +83,7 @@ public class UserController {
 
     @ClickMapping(view = UserUpdateView.class, pattern = 'B')
     public BukkitView<?, ?> onSave(@ModelAttribute('A') User user, Player player) {
-        player.sendMessage("Pre Saving: "+user.toString());
+        player.sendMessage("Pre Saving: " + user.toString());
         userService.save(user);
         player.sendMessage("Save Success");
         return index();
@@ -91,12 +91,12 @@ public class UserController {
 
 
     @PostUpdateView(UserView.class)
-    public void updateToUserView(Player player){
+    public void updateToUserView(Player player) {
         player.sendMessage("post update: user view");
     }
 
     @PreDestroyView(UserListView.class)
-    public void preDestroyUserListView(Player player){
+    public void preDestroyUserListView(Player player) {
         player.sendMessage("pre destroy: user list view");
     }
 

@@ -14,7 +14,6 @@ import com.ericlam.mc.eldgui.demo.middlewares.RequireAdmin;
 import com.ericlam.mc.eldgui.demo.middlewares.RequireLogin;
 import com.ericlam.mc.eldgui.demo.test.TestController;
 import com.ericlam.mc.eldgui.demo.user.UserController;
-import com.ericlam.mc.eldgui.manager.ReflectionCacheManager;
 
 @ELDBukkit(
         lifeCycle = ELDGLifeCycle.class,
@@ -28,7 +27,6 @@ public final class ELDGPlugin extends ELDBukkitPlugin {
     @Override
     public void bindServices(ServiceCollection serviceCollection) {
         serviceCollection.bindService(InventoryService.class, ELDGInventoryService.class);
-        serviceCollection.addSingleton(ReflectionCacheManager.class);
         serviceCollection.addGroupConfiguration(DemoInventories.class);
         serviceCollection.addConfiguration(ELDGLanguage.class);
         serviceCollection.addConfiguration(ELDGConfig.class);

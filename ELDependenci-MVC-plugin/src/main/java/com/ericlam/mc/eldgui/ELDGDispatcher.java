@@ -2,7 +2,7 @@ package com.ericlam.mc.eldgui;
 
 import com.ericlam.mc.eld.services.ConfigPoolService;
 import com.ericlam.mc.eld.services.ItemStackService;
-import com.ericlam.mc.eldgui.manager.ReflectionCacheManager;
+import com.ericlam.mc.eld.services.ReflectionService;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import org.bukkit.entity.Player;
@@ -36,7 +36,7 @@ public class ELDGDispatcher implements UIDispatcher, Listener {
     @Inject
     private ItemStackService itemStackService;
     @Inject
-    private ReflectionCacheManager reflectionCacheManager;
+    private ReflectionService reflectionService;
 
     public ELDGDispatcher(
             Object controller,
@@ -52,7 +52,8 @@ public class ELDGDispatcher implements UIDispatcher, Listener {
 
     @Override
     public void openFor(Player player) {
-        this.openFor(player, s -> {});
+        this.openFor(player, s -> {
+        });
     }
 
     @Override
@@ -74,7 +75,7 @@ public class ELDGDispatcher implements UIDispatcher, Listener {
                 eldgmvcInstallation,
                 configPoolService,
                 itemStackService,
-                reflectionCacheManager
+                reflectionService
         );
         this.guiSessionMap.put(player, eldgui);
     }
@@ -91,22 +92,22 @@ public class ELDGDispatcher implements UIDispatcher, Listener {
 
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent e){
+    public void onInventoryClick(InventoryClickEvent e) {
         Optional.ofNullable(guiSessionMap.get((Player) e.getWhoClicked())).ifPresent(gui -> gui.onInventoryClick(e));
     }
 
     @EventHandler
-    public void onInventoryDrag(InventoryDragEvent e){
+    public void onInventoryDrag(InventoryDragEvent e) {
         Optional.ofNullable(guiSessionMap.get((Player) e.getWhoClicked())).ifPresent(gui -> gui.onInventoryDrag(e));
     }
 
     @EventHandler
-    public void onInventoryClose(InventoryCloseEvent e){
+    public void onInventoryClose(InventoryCloseEvent e) {
         Optional.ofNullable(guiSessionMap.get((Player) e.getPlayer())).ifPresent(gui -> gui.onInventoryClose(e));
     }
 
     @EventHandler
-    public void onInventoryOpen(InventoryOpenEvent e){
+    public void onInventoryOpen(InventoryOpenEvent e) {
         Optional.ofNullable(guiSessionMap.get((Player) e.getPlayer())).ifPresent(gui -> gui.onInventoryOpen(e));
     }
 
@@ -127,7 +128,7 @@ public class ELDGDispatcher implements UIDispatcher, Listener {
 
         @Override
         public <T> T pollAttribute(String key) {
-            return (T)this.attributes.remove(key);
+            return (T) this.attributes.remove(key);
         }
     }
 }

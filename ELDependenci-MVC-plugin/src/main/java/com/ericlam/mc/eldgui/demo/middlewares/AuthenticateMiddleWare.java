@@ -14,7 +14,7 @@ public class AuthenticateMiddleWare implements MiddleWare<RequireLogin> {
     private final DebugLogger logger;
 
     @Inject
-    public AuthenticateMiddleWare(LoggingService loggingService){
+    public AuthenticateMiddleWare(LoggingService loggingService) {
         this.logger = loggingService.getLogger(getClass());
     }
 
@@ -24,7 +24,7 @@ public class AuthenticateMiddleWare implements MiddleWare<RequireLogin> {
         if (session == null) {
             logger.debugF("player %s is not login in, redirecting to login page", context.getPlayer().getName());
             context.setRedirect(new BukkitView<>(LoginView.class));
-        }else{
+        } else {
             logger.debugF("player %s is login in, continue", context.getPlayer().getName());
         }
     }

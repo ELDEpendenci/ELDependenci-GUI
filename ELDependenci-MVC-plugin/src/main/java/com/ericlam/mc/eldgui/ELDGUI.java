@@ -2,6 +2,7 @@ package com.ericlam.mc.eldgui;
 
 import com.ericlam.mc.eld.services.ConfigPoolService;
 import com.ericlam.mc.eld.services.ItemStackService;
+import com.ericlam.mc.eld.services.ReflectionService;
 import com.ericlam.mc.eld.services.ScheduleService;
 import com.ericlam.mc.eldgui.component.AttributeController;
 import com.ericlam.mc.eldgui.controller.*;
@@ -16,7 +17,6 @@ import com.ericlam.mc.eldgui.lifecycle.PreDestroy;
 import com.ericlam.mc.eldgui.lifecycle.PreDestroyView;
 import com.ericlam.mc.eldgui.manager.LifeCycleManager;
 import com.ericlam.mc.eldgui.manager.MethodParseManager;
-import com.ericlam.mc.eldgui.manager.ReflectionCacheManager;
 import com.ericlam.mc.eldgui.manager.ReturnTypeManager;
 import com.ericlam.mc.eldgui.middleware.MiddleWareManager;
 import com.ericlam.mc.eldgui.view.BukkitRedirectView;
@@ -63,7 +63,7 @@ public final class ELDGUI {
     private final BukkitView<? extends LoadingView, Void> loadingView;
     private final Method[] controllerMethods;
 
-    private final ReflectionCacheManager reflectionCacheManager;
+    private final ReflectionService reflectionService;
 
     private final MiddleWareManager middleWareManager;
 
@@ -79,7 +79,7 @@ public final class ELDGUI {
             ELDGMVCInstallation eldgmvcInstallation,
             ConfigPoolService configPoolService,
             ItemStackService itemStackService,
-            ReflectionCacheManager reflectionCacheManager
+            ReflectionService reflectionService
     ) {
 
         this.session = session;
@@ -90,20 +90,20 @@ public final class ELDGUI {
         this.eldgmvcInstallation = eldgmvcInstallation;
         this.configPoolService = configPoolService;
         this.itemStackService = itemStackService;
-        this.reflectionCacheManager = reflectionCacheManager;
+        this.reflectionService = reflectionService;
 
-        methodParseManager = new MethodParseManager(reflectionCacheManager);
+        methodParseManager = new MethodParseManager(reflectionService);
         this.initMethodParseManager(this.methodParseManager);
 
-        returnTypeManager = new ReturnTypeManager(reflectionCacheManager);
+        returnTypeManager = new ReturnTypeManager(reflectionService);
         this.initReturnTypeManager(this.returnTypeManager);
 
         this.lifeCycleManager = new LifeCycleManager(controller, methodParseManager);
         this.controllerCls = controller.getClass();
 
-        this.controllerMethods = reflectionCacheManager.getMethods(controllerCls);
+        this.controllerMethods = reflectionService.getMethods(controllerCls);
 
-        this.middleWareManager = new MiddleWareManager(reflectionCacheManager, eldgmvcInstallation, injector, this.controllerCls, owner, session);
+        this.middleWareManager = new MiddleWareManager(reflectionService, eldgmvcInstallation, injector, this.controllerCls, owner, session);
 
         var customQualifier = eldgmvcInstallation.getQualifierMap();
         this.eventHandlerMap.put(InventoryClickEvent.class, new ELDGClickEventHandler(controller, methodParseManager, returnTypeManager, middleWareManager, customQualifier, controllerMethods));
@@ -450,7 +450,7 @@ public final class ELDGUI {
         Class<? extends ExceptionViewHandler> exceptionViewHandler = exceptionViewHandlerOpt.orElseGet(eldgmvcInstallation::getDefaultExceptionHandler);
         ExceptionViewHandler viewHandlerIns = injector.getInstance(exceptionViewHandler);
         UIController fromController = controllerCls.getAnnotation(UIController.class);
-        Method[] declaredMethods = reflectionCacheManager.getMethods(exceptionViewHandler);
+        Method[] declaredMethods = reflectionService.getMethods(exceptionViewHandler);
         Arrays.stream(declaredMethods)
                 .filter(m -> m.isAnnotationPresent(HandleException.class))
                 .filter(m -> Arrays.stream(m.getAnnotation(HandleException.class).value()).anyMatch(v -> {

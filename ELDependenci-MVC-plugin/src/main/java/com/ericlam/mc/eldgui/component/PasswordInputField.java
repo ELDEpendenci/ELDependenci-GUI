@@ -94,8 +94,8 @@ public final class PasswordInputField extends AbstractComponent implements Liste
 
     @Override
     public void callBack(AsyncChatEvent event) {
-        String message = ((TextComponent)event.message()).content();
-        if (!regex.matcher(message).find()){
+        String message = ((TextComponent) event.message()).content();
+        if (!regex.matcher(message).find()) {
             event.getPlayer().sendMessage(invalidMessage);
             return;
         }
@@ -111,7 +111,7 @@ public final class PasswordInputField extends AbstractComponent implements Liste
     }
 
 
-    private void updateItem(){
+    private void updateItem() {
         itemFactory.lore(List.of(
                 "&7-> &f" + (plainText == null ? "NONE" : (showText ? plainText : String.valueOf(mask).repeat(plainText.length()))),
                 "&b中鍵以 " + (showText ? hidePasswordTxt : showPasswordTxt)

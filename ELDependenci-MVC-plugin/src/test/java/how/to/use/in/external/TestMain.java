@@ -8,7 +8,6 @@ import com.ericlam.mc.eldgui.view.BukkitView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 
@@ -49,7 +48,7 @@ public class TestMain {
     }
 
 
-    public static  <T> Map<String, Object> reflectToMap(T model) {
+    public static <T> Map<String, Object> reflectToMap(T model) {
 
         if (model == null) return Map.of();
 

@@ -7,7 +7,7 @@ public class UserView implements View<User> {
 
     @Override
     public void renderView(User model, UIContext context) {
-        System.out.println("show user info of "+model.username);
+        System.out.println("show user info of " + model.username);
         System.out.println(model);
     }
 

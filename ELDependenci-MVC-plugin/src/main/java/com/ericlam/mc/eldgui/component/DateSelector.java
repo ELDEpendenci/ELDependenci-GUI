@@ -79,9 +79,9 @@ public final class DateSelector extends AbstractComponent implements Clickable, 
         int day = this.currentValue.getDayOfMonth();
 
         itemFactory.lore(List.of("&7-> &f" +
-                        (currentSelect == 1 ? "[" + year + "]" : year) +
-                        "/" + (currentSelect == 2 ? "[" + month + "]" : month) +
-                        "/" + (currentSelect == 3 ? "[" + day + "]" : day)
+                (currentSelect == 1 ? "[" + year + "]" : year) +
+                "/" + (currentSelect == 2 ? "[" + month + "]" : month) +
+                "/" + (currentSelect == 3 ? "[" + day + "]" : day)
         ));
 
         this.updateInventory();
@@ -94,18 +94,18 @@ public final class DateSelector extends AbstractComponent implements Clickable, 
 
     @Override
     public void onClick(InventoryClickEvent event) {
-        if (event.isShiftClick()){
-            if (event.isLeftClick()){
+        if (event.isShiftClick()) {
+            if (event.isLeftClick()) {
                 this.currentSelect = selector.previous();
-            }else if (event.isRightClick()){
+            } else if (event.isRightClick()) {
                 this.currentSelect = selector.next();
-            }else{
+            } else {
                 return;
             }
-        }else{
+        } else {
             try {
                 this.handlerMap.get(currentSelect).accept(event);
-            } catch (DateTimeException e){
+            } catch (DateTimeException e) {
                 event.getWhoClicked().sendMessage(e.getMessage());
                 return;
             }
@@ -131,7 +131,7 @@ public final class DateSelector extends AbstractComponent implements Clickable, 
 
     @Override
     public void callBack(AsyncChatEvent event) {
-        String message = ((TextComponent)event.message()).content();
+        String message = ((TextComponent) event.message()).content();
         try {
             String[] args = message.split(" ");
             int year = Integer.parseInt(args[0]);
@@ -140,7 +140,7 @@ public final class DateSelector extends AbstractComponent implements Clickable, 
             this.currentValue = LocalDate.of(year, month, days);
             attributeController.setAttribute(getItem(), AttributeController.VALUE_TAG, this.currentValue);
             this.updateItem();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             event.getPlayer().sendMessage(invalid);
         }
     }

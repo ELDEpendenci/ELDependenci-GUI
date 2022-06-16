@@ -44,7 +44,7 @@ public final class LifeCycleManager {
         }
     }
 
-    private <A extends Annotation> void loadViewLifeCycle(Class<A> lifeCycle, LifeCycleFilter<A> filter){
+    private <A extends Annotation> void loadViewLifeCycle(Class<A> lifeCycle, LifeCycleFilter<A> filter) {
         this.viewLifeCycleFilterMap.put(lifeCycle, filter);
         List<Method> methods = Arrays.stream(controller.getClass().getMethods()).filter(m -> m.isAnnotationPresent(lifeCycle)).collect(Collectors.toList());
         if (methods.isEmpty()) return;
@@ -52,7 +52,7 @@ public final class LifeCycleManager {
     }
 
     @SuppressWarnings("unchecked")
-    public <A extends Annotation, E extends View<?>> void onViewLifeCycle(Class<A> lifeCycle, Class<E> viewCls){
+    public <A extends Annotation, E extends View<?>> void onViewLifeCycle(Class<A> lifeCycle, Class<E> viewCls) {
         Optional.ofNullable(this.viewLifeCycleMap.get(lifeCycle)).flatMap(methods -> methods.parallelStream().filter(m -> {
             A anno = m.getAnnotation(lifeCycle);
             return Optional

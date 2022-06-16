@@ -18,7 +18,7 @@ public class ELDGInventoryService implements InventoryService {
     private final Map<String, Class<?>> uiControllerMap;
 
     @Inject
-    public ELDGInventoryService(ELDGMVCInstallation installation){
+    public ELDGInventoryService(ELDGMVCInstallation installation) {
         this.uiControllerMap = installation.getControllerMap();
     }
 

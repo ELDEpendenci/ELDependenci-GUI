@@ -35,20 +35,20 @@ public final class AnimatedButton extends AbstractComponent implements Animatabl
         this.displays = displays;
         this.numbers = numbers;
         this.seconds = seconds;
-        if (icons.length > 0){
+        if (icons.length > 0) {
             itemFactory.material(icons[0]);
         }
-        if (displays.length > 0){
+        if (displays.length > 0) {
             itemFactory.display(displays[0]);
         }
-        if (numbers.length > 0){
+        if (numbers.length > 0) {
             itemFactory.amount(numbers[0]);
         }
     }
 
     @Override
     public void startAnimation() {
-        if (seconds > 0 && this.task == null){
+        if (seconds > 0 && this.task == null) {
             this.task = new AnimatedRunnable().runTaskTimer(ELDGPlugin.getPlugin(ELDGPlugin.class), 0L, 20L);
         }
     }
@@ -77,24 +77,24 @@ public final class AnimatedButton extends AbstractComponent implements Animatabl
         @Override
         public void run() {
 
-            if (timer % seconds == 0){
-                if (displayIterator.hasNext()){
+            if (timer % seconds == 0) {
+                if (displayIterator.hasNext()) {
                     itemFactory.display(displayIterator.next());
                 }
-                if (loreIterator.hasNext()){
+                if (loreIterator.hasNext()) {
                     itemFactory.lore(Arrays.asList(loreIterator.next()));
                 }
-                if (iconIterator.hasNext()){
+                if (iconIterator.hasNext()) {
                     itemFactory.material(iconIterator.next());
                 }
-                if (numberIterator.hasNext()){
+                if (numberIterator.hasNext()) {
                     itemFactory.amount(numberIterator.next());
                 }
                 updateInventory();
             }
 
             timer++;
-            if (timer == Long.MAX_VALUE){
+            if (timer == Long.MAX_VALUE) {
                 timer = 0;
             }
         }

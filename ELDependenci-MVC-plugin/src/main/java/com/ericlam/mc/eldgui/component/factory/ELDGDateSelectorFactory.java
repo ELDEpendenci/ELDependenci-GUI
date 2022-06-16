@@ -7,7 +7,7 @@ import com.ericlam.mc.eldgui.component.DateSelector;
 
 import java.time.LocalDate;
 
-public final class ELDGDateSelectorFactory extends AbstractComponentFactory<DateSelectorFactory> implements DateSelectorFactory{
+public final class ELDGDateSelectorFactory extends AbstractComponentFactory<DateSelectorFactory> implements DateSelectorFactory {
 
     private String input;
     private String invalid;

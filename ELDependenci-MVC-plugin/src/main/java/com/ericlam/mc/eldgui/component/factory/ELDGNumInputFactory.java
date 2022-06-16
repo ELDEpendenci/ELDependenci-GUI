@@ -7,7 +7,7 @@ import com.ericlam.mc.eldgui.component.NumInputField;
 
 import java.util.Optional;
 
-public final class ELDGNumInputFactory extends AbstractComponentFactory<NumInputFactory> implements NumInputFactory{
+public final class ELDGNumInputFactory extends AbstractComponentFactory<NumInputFactory> implements NumInputFactory {
 
     private boolean disabled;
     private String inputMessage;
@@ -40,7 +40,7 @@ public final class ELDGNumInputFactory extends AbstractComponentFactory<NumInput
 
     @Override
     public <T extends Number> NumberTypeFactory<T> useNumberType(Class<T> type) {
-        var f  = new ELDNumberTypeFactory<>(type);
+        var f = new ELDNumberTypeFactory<>(type);
         this.typeFactory = f;
         return f;
     }
@@ -104,7 +104,7 @@ public final class ELDGNumInputFactory extends AbstractComponentFactory<NumInput
             return this;
         }
 
-        public Component build(ItemStackService.ItemFactory itemFactory){
+        public Component build(ItemStackService.ItemFactory itemFactory) {
             return new NumInputField<T>(
                     attributeController,
                     itemFactory,

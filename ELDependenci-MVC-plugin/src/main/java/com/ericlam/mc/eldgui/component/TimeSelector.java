@@ -45,7 +45,7 @@ public final class TimeSelector extends AbstractComponent implements Clickable, 
         this.invalid = invalid;
         this.disabled = disabled;
         this.maxWait = maxWait;
-        this.currentValue = Optional.ofNullable((LocalTime)attributeController.getAttribute(getItem(), AttributeController.VALUE_TAG)).orElseGet(LocalTime::now);
+        this.currentValue = Optional.ofNullable((LocalTime) attributeController.getAttribute(getItem(), AttributeController.VALUE_TAG)).orElseGet(LocalTime::now);
 
         handlerMap.put(1, e -> {
             if (e.isLeftClick()) {
@@ -71,7 +71,7 @@ public final class TimeSelector extends AbstractComponent implements Clickable, 
         this.updateItem();
     }
 
-    private void updateItem(){
+    private void updateItem() {
         int hour = this.currentValue.getHour();
         int minute = this.currentValue.getMinute();
         int second = this.currentValue.getSecond();
@@ -92,18 +92,18 @@ public final class TimeSelector extends AbstractComponent implements Clickable, 
 
     @Override
     public void onClick(InventoryClickEvent event) {
-        if (event.isShiftClick()){
-            if (event.isLeftClick()){
+        if (event.isShiftClick()) {
+            if (event.isLeftClick()) {
                 this.currentSelect = selector.previous();
-            }else if (event.isRightClick()){
+            } else if (event.isRightClick()) {
                 this.currentSelect = selector.next();
-            }else{
+            } else {
                 return;
             }
-        }else{
+        } else {
             try {
                 this.handlerMap.get(currentSelect).accept(event);
-            } catch (DateTimeException e){
+            } catch (DateTimeException e) {
                 event.getWhoClicked().sendMessage(e.getMessage());
                 return;
             }
@@ -129,7 +129,7 @@ public final class TimeSelector extends AbstractComponent implements Clickable, 
 
     @Override
     public void callBack(AsyncChatEvent event) {
-        String message = ((TextComponent)event.message()).content();
+        String message = ((TextComponent) event.message()).content();
         try {
             String[] args = message.split(":");
             int hour = Integer.parseInt(args[0]);
@@ -138,7 +138,7 @@ public final class TimeSelector extends AbstractComponent implements Clickable, 
             this.currentValue = LocalTime.of(hour, minute, second);
             attributeController.setAttribute(getItem(), AttributeController.VALUE_TAG, this.currentValue);
             this.updateItem();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             event.getPlayer().sendMessage(invalid);
         }
     }

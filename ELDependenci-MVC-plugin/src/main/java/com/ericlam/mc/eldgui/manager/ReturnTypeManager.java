@@ -1,5 +1,6 @@
 package com.ericlam.mc.eldgui.manager;
 
+import com.ericlam.mc.eld.services.ReflectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,9 +18,9 @@ public final class ReturnTypeManager {
     private final Map<Function<Type, Boolean>, BiConsumer<Object, Annotation[]>> supplierMap = new ConcurrentHashMap<>();
 
 
-    private final ReflectionCacheManager cacheManager;
+    private final ReflectionService cacheManager;
 
-    public ReturnTypeManager(ReflectionCacheManager cacheManager) {
+    public ReturnTypeManager(ReflectionService cacheManager) {
         this.cacheManager = cacheManager;
     }
 

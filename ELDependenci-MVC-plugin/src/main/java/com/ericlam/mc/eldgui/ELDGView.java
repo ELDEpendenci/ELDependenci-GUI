@@ -293,7 +293,7 @@ public final class ELDGView<T> {
             public PatternComponentBuilder components(Component... components) {
                 for (Component component : components) {
                     componentMap.putIfAbsent(pattern, new ArrayList<>());
-                    if (!inventoryContext.addItem(pattern, component)){
+                    if (!inventoryContext.addItem(pattern, component)) {
                         LOGGER.warn("無法在界面 {} 的 Pattern {} 中新增組件 {}, 位置已滿。",
                                 view.getClass().getSimpleName(), pattern, component.getClass().getSimpleName()
                         );
@@ -312,7 +312,7 @@ public final class ELDGView<T> {
             @Override
             public PatternComponentBuilder component(int pos, Component component) {
                 componentMap.putIfAbsent(pattern, new ArrayList<>());
-                if (!inventoryContext.setItem(pattern, pos, component)){
+                if (!inventoryContext.setItem(pattern, pos, component)) {
                     LOGGER.warn("無法在界面 {} 的 Pattern {} 中設置組件 {} 到位置 {}, 此位置無效。",
                             view.getClass().getSimpleName(), pattern, component.getClass().getSimpleName(), pos
                     );
@@ -366,7 +366,7 @@ public final class ELDGView<T> {
         public synchronized <C> C getAttribute(ItemStack item, String key) {
             // instead of using persist data type, use map
             // return getObjectAttribute(item, key);
-            if (!item.hasItemMeta()){
+            if (!item.hasItemMeta()) {
                 LOGGER.warn("{} has no item meta, return null.", item.getType());
                 return null;
             }
@@ -473,14 +473,14 @@ public final class ELDGView<T> {
             return List.copyOf(items);
         }
 
-        public Map<Integer, ItemStack> getItemMap(char pattern){
+        public Map<Integer, ItemStack> getItemMap(char pattern) {
             var slots = patternMasks.get(pattern);
             if (slots == null) return Map.of();
             Map<Integer, ItemStack> items = new HashMap<>();
             int order = 0;
             for (int s : slots) {
                 var item = nativeInventory.getItem(s);
-                if (item != null){
+                if (item != null) {
                     items.put(order, item);
                 }
                 order++;

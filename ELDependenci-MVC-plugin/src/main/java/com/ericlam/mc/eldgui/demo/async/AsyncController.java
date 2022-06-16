@@ -22,7 +22,7 @@ public final class AsyncController {
     @Inject
     private ELDGPlugin plugin;
 
-    public ScheduleService.BukkitPromise<BukkitView<?, ?>> index(){
+    public ScheduleService.BukkitPromise<BukkitView<?, ?>> index() {
         return scheduleService.runAsync(plugin, () -> {
             try {
                 Thread.sleep(5000);
@@ -36,7 +36,7 @@ public final class AsyncController {
 
     @AsyncLoadingView(CustomLoadingView.class)
     @ClickMapping(view = AsyncView.class, pattern = 'A')
-    public CompletableFuture<BukkitView<?, ?>> onClick(Player player){
+    public CompletableFuture<BukkitView<?, ?>> onClick(Player player) {
         player.sendMessage("3 seconds to go to the user view with completableFuture");
         return CompletableFuture.runAsync(() -> {
             try {

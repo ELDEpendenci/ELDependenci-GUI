@@ -22,9 +22,9 @@ public class UserProfileView implements View<UserProfile> {
                         btn.icon(Material.PAPER)
                                 .title("&a你的個人資料")
                                 .lore(
-                                        "&e賬戶ID: &b"+model.username,
-                                        "&e賬戶名稱: &b"+model.playerName,
-                                        "&e是否管理員: &b"+model.isAdmin
+                                        "&e賬戶ID: &b" + model.username,
+                                        "&e賬戶名稱: &b" + model.playerName,
+                                        "&e是否管理員: &b" + model.isAdmin
                                 )
                                 .create()
                 )

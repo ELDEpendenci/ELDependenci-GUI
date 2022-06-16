@@ -15,17 +15,17 @@ import java.util.Map;
 public class TestController {
 
     @PostConstruct
-    public void beforeCreate(Player player){
+    public void beforeCreate(Player player) {
         player.sendMessage("life cycle: before create for test controller");
     }
 
-    public BukkitView<?, ?> index(){
+    public BukkitView<?, ?> index() {
         return new BukkitView<>(TestView.class);
     }
 
 
     @ClickMapping(view = TestView.class, pattern = 'A')
-    public BukkitView<?, ?> onClick(@ModelAttribute('Z') TestModel test, Player player, @MapAttribute('Z') Map<String, Object> map){
+    public BukkitView<?, ?> onClick(@ModelAttribute('Z') TestModel test, Player player, @MapAttribute('Z') Map<String, Object> map) {
         player.sendMessage(test.toString());
         player.sendMessage(map.toString());
         return null;
@@ -33,7 +33,7 @@ public class TestController {
 
 
     @PreDestroy
-    public void beforeDestroy(Player player){
+    public void beforeDestroy(Player player) {
         player.sendMessage("life cycle: before destroy for test controller");
     }
 }

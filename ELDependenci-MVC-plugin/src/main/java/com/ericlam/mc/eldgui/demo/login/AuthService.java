@@ -38,24 +38,24 @@ public class AuthService {
         return this.userStorage.get(username).equals(password);
     }
 
-    public boolean isAdmin(String username){
+    public boolean isAdmin(String username) {
         return username.equals("admin1234");
     }
 
-    public boolean isAdmin(LoginSession content){
+    public boolean isAdmin(LoginSession content) {
         return this.isAdmin(content.username);
     }
 
-    public void saveSession(UUID player, LoginSession content){
+    public void saveSession(UUID player, LoginSession content) {
         this.sessionStorage.put(player, content);
     }
 
     @Nullable
-    public LoginSession getSession(UUID player){
+    public LoginSession getSession(UUID player) {
         return this.sessionStorage.get(player);
     }
 
-    public void removeSession(UUID player){
+    public void removeSession(UUID player) {
         this.sessionStorage.remove(player);
     }
 

@@ -1,5 +1,6 @@
 package com.ericlam.mc.eldgui.manager;
 
+import com.ericlam.mc.eld.services.ReflectionService;
 import org.bukkit.event.inventory.InventoryEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,9 +17,9 @@ public final class MethodParseManager {
 
     private final Map<BiFunction<Type, Annotation[], Boolean>, MethodParser> supplierMap = new ConcurrentHashMap<>();
 
-    private final ReflectionCacheManager cacheManager;
+    private final ReflectionService cacheManager;
 
-    public MethodParseManager(ReflectionCacheManager cacheManager) {
+    public MethodParseManager(ReflectionService cacheManager) {
         this.cacheManager = cacheManager;
     }
 

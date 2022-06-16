@@ -43,9 +43,9 @@ public abstract class ELDGEventHandler<A extends Annotation, E extends Inventory
         this.middleWareManager = middleWareManager;
         this.returnTypeManager = returnTypeManager;
         this.customQualifier = customQualifier;
-        if (controllerEventMap.containsKey(controller.getClass())){
+        if (controllerEventMap.containsKey(controller.getClass())) {
             this.eventMap.putAll(controllerEventMap.get(controller.getClass()));
-        }else{
+        } else {
             this.loadAllCommonHandlers(declaredMethods);
             this.loadAllHandlers(declaredMethods).forEach((k, v) -> eventMap.put(toRequestMapping(k), v));
             controllerEventMap.put(controller.getClass(), ImmutableMap.copyOf(eventMap));
@@ -92,7 +92,7 @@ public abstract class ELDGEventHandler<A extends Annotation, E extends Inventory
                     }
                     return requestMapper.pattern() == patternClicked
                             && requestMapper.event() == e.getClass()
-                            && ( requestMapper.view() == AnyView.class || requestMapper.view() == currentView.getClass() );
+                            && (requestMapper.view() == AnyView.class || requestMapper.view() == currentView.getClass());
                 })
                 .filter((en) -> {
                     Method method = en.getValue();

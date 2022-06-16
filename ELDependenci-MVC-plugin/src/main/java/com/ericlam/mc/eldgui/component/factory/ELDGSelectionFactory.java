@@ -155,10 +155,10 @@ public final class ELDGSelectionFactory extends AbstractComponentFactory<Selecti
                                 .collect(Collectors.toList())
                 );
                 if (initValue == null) return;
-                if (amounts.containsKey(initValue)){
+                if (amounts.containsKey(initValue)) {
                     f.amount(amounts.get(initValue));
                 }
-                if (icons.containsKey(initValue)){
+                if (icons.containsKey(initValue)) {
                     f.material(icons.get(initValue));
                 }
             });

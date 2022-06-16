@@ -18,11 +18,10 @@ public class UserController {
     @Inject
     private UserService userService;
 
-    public BukkitView<?, ?> index(){
+    public BukkitView<?, ?> index() {
         List<User> users = userService.findAll();
         return new BukkitView<>(UserListView.class, users);
     }
-
 
 
     @RequestMapping(
@@ -35,11 +34,11 @@ public class UserController {
             view = UserListView.class,
             pattern = 'A'
     )
-    public BukkitView<?, ?> checkUserInfo(@ItemAttribute("id") String id, Player player){
+    public BukkitView<?, ?> checkUserInfo(@ItemAttribute("id") String id, Player player) {
         Optional<User> user = userService.findById(id);
-        if (user.isPresent()){
+        if (user.isPresent()) {
             return new BukkitView<>(UserView.class, user.get());
-        }else{
+        } else {
             player.sendMessage("user not exist.");
             return index();
         }

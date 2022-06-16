@@ -7,7 +7,7 @@ import com.ericlam.mc.eldgui.component.Component;
 
 import java.util.function.Consumer;
 
-public final class ELDGBukkitItemFactory extends AbstractComponentFactory<BukkitItemFactory> implements BukkitItemFactory{
+public final class ELDGBukkitItemFactory extends AbstractComponentFactory<BukkitItemFactory> implements BukkitItemFactory {
 
     public ELDGBukkitItemFactory(ItemStackService itemStackService, AttributeController attributeController) {
         super(itemStackService, attributeController);

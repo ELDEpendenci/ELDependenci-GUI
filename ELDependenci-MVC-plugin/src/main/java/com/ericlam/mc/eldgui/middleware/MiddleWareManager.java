@@ -1,9 +1,8 @@
 package com.ericlam.mc.eldgui.middleware;
 
+import com.ericlam.mc.eld.services.ReflectionService;
 import com.ericlam.mc.eldgui.ELDGMVCInstallation;
 import com.ericlam.mc.eldgui.UISession;
-import com.ericlam.mc.eldgui.controller.AsyncLoadingView;
-import com.ericlam.mc.eldgui.manager.ReflectionCacheManager;
 import com.ericlam.mc.eldgui.view.BukkitView;
 import com.google.inject.Injector;
 import org.apache.commons.lang.ArrayUtils;
@@ -12,7 +11,6 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nullable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,12 +19,12 @@ public class MiddleWareManager {
     private final Annotation[] controllerAnnotations;
 
 
-    private final ReflectionCacheManager reflectionCacheManager;
+    private final ReflectionService reflectionCacheManager;
     private final Player player;
     private final UISession session;
 
     public MiddleWareManager(
-            ReflectionCacheManager reflectionCacheManager,
+            ReflectionService reflectionCacheManager,
             ELDGMVCInstallation installation,
             Injector injector,
             Class<?> controllerCls,
@@ -60,13 +58,12 @@ public class MiddleWareManager {
         for (Annotation annotation : totalAnnotations) {
             if (!middleWareMap.containsKey(annotation.annotationType())) continue;
             invokeMiddleWare(annotation.annotationType(), annotation, context);
-            if (context.getView() != null){
+            if (context.getView() != null) {
                 return context.getView();
             }
         }
         return context.getView();
     }
-
 
 
     @SuppressWarnings("unchecked")

@@ -17,7 +17,7 @@ public class AuthorizeMiddleWare implements MiddleWare<RequireAdmin> {
     private final DebugLogger logger;
 
     @Inject
-    public AuthorizeMiddleWare(LoggingService loggingService){
+    public AuthorizeMiddleWare(LoggingService loggingService) {
         this.logger = loggingService.getLogger(getClass());
     }
 
@@ -31,7 +31,7 @@ public class AuthorizeMiddleWare implements MiddleWare<RequireAdmin> {
             context.getSession().setAttribute("exception", new Exception("you are not admin."));
             context.getSession().setAttribute("from", "login");
             context.setRedirect(new BukkitRedirectView("error"));
-        }else{
+        } else {
             logger.debugF("player %s is admin, continue", context.getPlayer().getName());
         }
     }

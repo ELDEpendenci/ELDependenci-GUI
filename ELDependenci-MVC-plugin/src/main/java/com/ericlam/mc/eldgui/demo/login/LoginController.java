@@ -20,20 +20,20 @@ public class LoginController {
     private AuthService authService;
 
     @PostConstruct
-    public void beforeEnterView(UISession session, Player player){
+    public void beforeEnterView(UISession session, Player player) {
         var s = authService.getSession(player.getUniqueId());
-        if (s != null && session.getAttribute("session") == null){
+        if (s != null && session.getAttribute("session") == null) {
             session.setAttribute("session", s);
         }
     }
 
     @RequireLogin
-    public BukkitView<?, ?> index(){
+    public BukkitView<?, ?> index() {
         return new BukkitView<>(MainView.class);
     }
 
     @ClickMapping(view = LoginView.class, pattern = 'E')
-    public BukkitView<?, ?> login(UISession session, @MapAttribute('C') Map<String, Object> map, Player player){
+    public BukkitView<?, ?> login(UISession session, @MapAttribute('C') Map<String, Object> map, Player player) {
         var username = (String) map.get("username");
         var success = authService.authenticate(username, (String) map.get("password"));
         if (success) {
@@ -50,13 +50,13 @@ public class LoginController {
 
 
     @ClickMapping(view = LoginFailedView.class, pattern = 'C')
-    public BukkitView<?, ?> backToLogin(){
+    public BukkitView<?, ?> backToLogin() {
         return new BukkitView<>(LoginView.class);
     }
 
     @RequireLogin
     @ClickMapping(view = MainView.class, pattern = 'C')
-    public BukkitView<?, ?> logout(UISession session, Player player){
+    public BukkitView<?, ?> logout(UISession session, Player player) {
         session.pollAttribute("session");
         authService.removeSession(player.getUniqueId());
         player.sendMessage("登出成功。");
@@ -66,25 +66,25 @@ public class LoginController {
     @RequireAdmin
     @RequireLogin
     @ClickMapping(view = MainView.class, pattern = 'D')
-    public BukkitView<?, ?> toAdminView(){
+    public BukkitView<?, ?> toAdminView() {
         return new BukkitView<>(AdminContentView.class);
     }
 
     @RequireLogin
     @ClickMapping(view = AdminContentView.class, pattern = 'C')
-    public BukkitView<? ,?> backToMain(){
+    public BukkitView<?, ?> backToMain() {
         return new BukkitView<>(MainView.class);
     }
 
     @RequireLogin
     @ClickMapping(view = UserProfileView.class, pattern = 'C')
-    public BukkitView<? ,?> backToMain2(){
+    public BukkitView<?, ?> backToMain2() {
         return new BukkitView<>(MainView.class);
     }
 
     @RequireLogin
     @ClickMapping(view = MainView.class, pattern = 'E')
-    public BukkitView<?, ?> goToProfileView(UISession session, Player player){
+    public BukkitView<?, ?> goToProfileView(UISession session, Player player) {
         LoginSession s = session.getAttribute("session");
         if (s == null) throw new RuntimeException("session is null");
         var admin = authService.isAdmin(s);

@@ -32,7 +32,7 @@ public final class Checkbox extends AbstractComponent implements Clickable {
         this.uncheckedShow = uncheckedShow;
         this.currentValue = (boolean) Optional.ofNullable(attributeController.getAttribute(getItem(), AttributeController.VALUE_TAG)).orElse(false);
         this.disabled = disabled;
-        itemFactory.lore("-> "+ (currentValue ? checkedShow : uncheckedShow));
+        itemFactory.lore("-> " + (currentValue ? checkedShow : uncheckedShow));
         itemFactory.lore("&cDisabled");
     }
 
@@ -40,7 +40,7 @@ public final class Checkbox extends AbstractComponent implements Clickable {
     public void onClick(InventoryClickEvent event) {
         this.currentValue = !this.currentValue;
         attributeController.setAttribute(getItem(), AttributeController.VALUE_TAG, this.currentValue);
-        itemFactory.lore(List.of("-> "+(this.currentValue ? checkedShow : uncheckedShow)));
+        itemFactory.lore(List.of("-> " + (this.currentValue ? checkedShow : uncheckedShow)));
         itemFactory.material(this.currentValue ? checkedIcon : uncheckedIcon);
         this.updateInventory();
     }
