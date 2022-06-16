@@ -297,6 +297,7 @@ public final class ELDGView<T> {
                         LOGGER.warn("無法在界面 {} 的 Pattern {} 中新增組件 {}, 位置已滿。",
                                 view.getClass().getSimpleName(), pattern, component.getClass().getSimpleName()
                         );
+                        return this;
                     }
                     componentMap.get(pattern).add(component);
                     if (component instanceof Animatable) ((Animatable) component).startAnimation();
