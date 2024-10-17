@@ -5,7 +5,7 @@ import com.ericlam.mc.eldgui.component.modifier.Clickable;
 import com.ericlam.mc.eldgui.component.modifier.Listenable;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.TextComponent;
-import org.apache.commons.lang.text.StrSubstitutor;
+import org.apache.commons.lang3.text.StrSubstitutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;

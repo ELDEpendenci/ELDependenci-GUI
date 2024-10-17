@@ -10,7 +10,7 @@ import com.ericlam.mc.eldgui.component.modifier.Clickable;
 import com.ericlam.mc.eldgui.component.modifier.Disable;
 import com.ericlam.mc.eldgui.component.modifier.Listenable;
 import com.ericlam.mc.eldgui.view.*;
-import org.apache.commons.lang.text.StrSubstitutor;
+import org.apache.commons.lang3.text.StrSubstitutor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

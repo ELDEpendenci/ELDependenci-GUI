@@ -5,7 +5,7 @@ import com.ericlam.mc.eldgui.ELDGMVCInstallation;
 import com.ericlam.mc.eldgui.UISession;
 import com.ericlam.mc.eldgui.view.BukkitView;
 import com.google.inject.Injector;
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;

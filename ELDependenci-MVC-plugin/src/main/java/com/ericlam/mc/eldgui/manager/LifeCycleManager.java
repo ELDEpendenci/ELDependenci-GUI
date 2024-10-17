@@ -5,7 +5,7 @@ import com.ericlam.mc.eldgui.lifecycle.PostUpdateView;
 import com.ericlam.mc.eldgui.lifecycle.PreDestroy;
 import com.ericlam.mc.eldgui.lifecycle.PreDestroyView;
 import com.ericlam.mc.eldgui.view.View;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
