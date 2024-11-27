@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
       - uses: eric2788/maven-jar-publish@v2
         with:
-          java-version: 17
+          java-version: 21
           body: 版本更新請到[這裏](https://eric2788.gitbook.io/eldependenci-mvc/references/update)查看。
           upload-module: './ELDependenci-MVC-plugin'
       - name: 'Update javadocs'
@@ -46,7 +46,7 @@ jobs:
           separator: '.'
       - uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'adopt'
       - name: Publish package
         run: mvn --batch-mode clean deploy
